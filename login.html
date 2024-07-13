@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Screen</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/CSS/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center blue-text">Login</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="mobileNumber">Mobile Number</label>
+                                <input type="text" class="form-control" name="mobile_number" id="mobile_number" placeholder="Enter your mobile number" required>
+                            </div>
+                            <div class="form-group" id="otpContainer" style="display: none;">
+                                <label for="otp">OTP</label>
+                                <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP">
+                            </div>
+                            <button type="submit" id="submitBtn" class="btn btn-primary btn-block">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/JS/login.js"></script>
+</body>
+</html>

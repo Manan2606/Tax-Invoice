@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Invoice</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS\form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Tax Invoice</h1>
+        <form id="invoice-form" name="invoice-form" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="invoice-no">Invoice No.:</label>
+                    <input type="text" class="form-control" id="invoice_no" name="invoice_no" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="invoice-date">Invoice Date: <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control invoice_date" id="invoice_date" name="invoice_date"
+                        placeholder="dd/mm/yyyy">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="customer-name">Customer Name: <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="mobile">Mobile: <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" id="mobile" name="mobile" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="customer-gstin">Customer GSTIN:</label>
+                    <input type="text" class="form-control" id="customer_gstin" name="customer_gstin" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="place-of-supply">Place of Supply: <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" id="place_of_supply" name="place_of_supply" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="city">City: <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" id="city" name="city" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="state">State:</label>
+                    <input type="text" class="form-control" id="state" name="state" required>
+                </div>
+            </div>
+            <div class="invoice-items" id="invoice-items">
+                <h2>Invoice Items</h2>
+            </div>
+            <button type="button" class="btn btn-success mt-3 mb-4" id="add-item">Add Item</button>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="total-discount">Total Discount (%):</label>
+                    <input type="number" class="form-control" id="total_discount" name="total_discount" value=0 min="0"
+                        max="99">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="total-value">Total Value:</label>
+                    <input type="number" class="form-control" id="total_value" name="total_value" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="total-cgst">Total CGST (%):</label>
+                    <select class="form-control" id="total_cgst" name="total_cgst">
+                        <option value="0">0%</option>
+                        <option value="1">1%</option>
+                        <option value="1.5">1.5%</option>
+                        <option value="1.8">1.8%</option>
+                        <option value="2">2%</option>
+                        <option value="5">5%</option>
+                        <option value="9">9%</option>
+                        <option value="18">18%</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="total-sgst">Total SGST (%):</label>
+                    <select class="form-control" id="total_sgst" name="total_sgst">
+                        <option value="0">0%</option>
+                        <option value="1">1%</option>
+                        <option value="1.5">1.5%</option>
+                        <option value="1.8">1.8%</option>
+                        <option value="2">2%</option>
+                        <option value="5">5%</option>
+                        <option value="9">9%</option>
+                        <option value="18">18%</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="total_cgst_rs">Total CGST (Rs):</label>
+                    <input type="number" class="form-control" id="total_cgst_rs" name="total_cgst_rs" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="total_sgst_rs">Total SGST (Rs):</label>
+                    <input type="number" class="form-control" id="total_sgst_rs" name="total_sgst_rs" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="total-igst">Total IGST (%):</label>
+                    <select class="form-control" id="total_igst" name="total_igst">
+                        <option value="0">0%</option>
+                        <option value="1">1%</option>
+                        <option value="1.5">1.5%</option>
+                        <option value="1.8">1.8%</option>
+                        <option value="2">2%</option>
+                        <option value="5">5%</option>
+                        <option value="9">9%</option>
+                        <option value="18">18%</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="total_igst_rs">Total IGST (Rs):</label>
+                    <input type="number" class="form-control" id="total_igst_rs" name="total_igst_rs" value=0.00 readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="net-amount">Net Amount:</label>
+                    <input type="number" class="form-control" id="net_amount" name="net_amount" readonly>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn btn-primary" id="generate-invoice">Generate Invoice</button>
+                <a href="filter.html" class="btn btn-success" id="filter-button">Filter/Reprint</a>
+                <a href="#" class="btn btn-danger" id="logout-button">Log Out</a>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Add jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        window.jsPDF = window.jspdf.jsPDF;
+    </script>
+    <script src="JS\form.js"></script>
+</body>
+
+</html>
